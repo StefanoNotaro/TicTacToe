@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "ghBuild": "ng build --prod --base-href=/TicTacToe/"
+    "ghBuild": "ng build --prod --base-href \"https://stefanonotaro.github.io/TicTacToe/\""
   },
   "private": true,
   "dependencies": {
