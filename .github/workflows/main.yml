@@ -1,33 +1,21 @@
-# This is a basic workflow to help you get started with Actions
-
-name: CI/CD
-
-# Controls when the action will run. 
+name: Build and Deploy
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ master ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+    branches:
+      - master
 jobs:
-   build-and-deploy:
-     runs-on: ubuntu-latest
+  build:
 
-     steps:
-     - name: Checkout
-       uses: actions/checkout@v2
+    runs-on: ubuntu-latest
 
-     - name: Use Node.js 14.x
-       uses: actions/setup-node@v1
-       with:
-         node-version: 14.x
-
-     - name: Prepare and deploy
-       env:
-         GH_TOKEN: ${{ secrets.GH_TOKEN }}
-       run: |
-         npm install
-         npm run ng -- deploy --base-href=/TicTacToe/ --name="CI/CD" --email=stefano.notaro@gmail.com
+    steps:
+    - uses: actions/checkout@v2
+    - name: All things angular
+    - name: Angular Deploy gh-pages Actions
+      uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.3.2
+      with:
+        github_access_token: ${{ secrets.ACCESS_TOKEN }} # see the Configuration section for how you can create secrets
+        build_configuration: prod # The build environment for the app. please look configurations in your angular.json
+        base_href: https://github.com/StefanoNotaro/TicTacToe
+        deploy_branch: gh-pages # The branch the action should deploy to.
+        angular_dist_build_folder: dist/TicTacToe
