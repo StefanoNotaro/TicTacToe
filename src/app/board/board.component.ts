@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ISquare } from '../common/square.interface';
+import { ISquare } from '../common/interfaces/square.interface';
+import { Player } from '../common/enums/player';
 
 @Component({
   selector: 'app-board',
@@ -11,11 +12,11 @@ export class BoardComponent implements OnInit {
   public xIsNext!: boolean;
   public winner!: string;
 
-  public get getPlayer(): 'X' | 'O' { return this.xIsNext ? 'X' : 'O'; }
+  public get getPlayer(): Player { return this.xIsNext ? Player.X : Player.O; }
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.startNewGame();
   }
   public startNewGame(): void {
@@ -32,6 +33,7 @@ export class BoardComponent implements OnInit {
 
     this.winner = this.calculateWinner();
   }
+
   private calculateWinner(): string {
     const winnerLines = [
       [0, 1, 2],
@@ -49,11 +51,15 @@ export class BoardComponent implements OnInit {
       if (this.squares[a].value &&
         this.squares[a].value === this.squares[b].value &&
         this.squares[a].value === this.squares[c].value) {
-        return this.squares[a].value as string;
+        this.disableSquares();
+        return this.squares[a].value as Player;
       }
     }
 
     return '';
   }
 
+  private disableSquares(): void {
+    this.squares.forEach(x => x.disabled = true);
+  }
 }

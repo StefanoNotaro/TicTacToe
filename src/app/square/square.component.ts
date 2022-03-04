@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ISquare } from '../common/square.interface';
+import { ISquare } from '../common/interfaces/square.interface';
 
 @Component({
   selector: 'app-square',
