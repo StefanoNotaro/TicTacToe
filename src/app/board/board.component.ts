@@ -19,6 +19,7 @@ export class BoardComponent implements OnInit {
   ngOnInit(): void {
     this.startNewGame();
   }
+
   public startNewGame(): void {
     this.squares = new Array<ISquare>(9).fill({ disabled: false, value: undefined });
     this.xIsNext = false;
@@ -32,6 +33,23 @@ export class BoardComponent implements OnInit {
     }
 
     this.winner = this.calculateWinner();
+    if (this.winner === '' && this.xIsNext && this.squares.some(x => !x.value)) {
+      this.makeAutomaticMove();
+      this.winner = this.calculateWinner();
+    }
+
+  }
+
+  private makeAutomaticMove(): void {
+    const allEmptySqauresIndexes = new Array<number>();
+    for (let i = 0; i < this.squares.length; i++) {
+      const square = this.squares[i];
+      if (!square.value) {
+        allEmptySqauresIndexes.push(i);
+      }
+    }
+
+    this.makeMove(allEmptySqauresIndexes[Math.floor(Math.random() * allEmptySqauresIndexes.length)]);
   }
 
   private calculateWinner(): string {
