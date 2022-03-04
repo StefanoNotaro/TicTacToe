@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Player } from '../common/enums/player';
 import { ISquare } from '../common/interfaces/square.interface';
 
 @Component({
@@ -8,6 +9,8 @@ import { ISquare } from '../common/interfaces/square.interface';
 })
 export class SquareComponent {
   @Input() value!: ISquare;
+
+  Player = Player;
 
   constructor() { }
 

@@ -1,1 +1,7 @@
-<button type="button" aria-label="Current sqaure value" [disabled]="value.disabled">{{ value.value }}</button>
+<button type="button" aria-label="Current sqaure value" [disabled]="value.disabled" [ngClass]="{
+    'player' : value.value,
+    'player-x': value.value === Player.X,
+    'player-o': value.value === Player.O
+  }">
+  {{ value.value }}
+</button>
