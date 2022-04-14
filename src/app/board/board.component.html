@@ -1,4 +1,5 @@
-<h1>Current player: {{ getPlayer }}</h1>
+<h1 *ngIf="!gameEnded || winner">Current player: {{ getPlayer }}</h1>
+<h1 *ngIf="gameEnded && !winner">Game ended in draw!</h1>
 
 <button type="button" aria-label="Start new game" (click)="startNewGame()">
   Start new game

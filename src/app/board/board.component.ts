@@ -10,6 +10,7 @@ import { Difficulty } from '../common/enums/difficulty.enum';
 })
 export class BoardComponent implements OnInit {
   public squares!: ISquare[];
+  public gameEnded = false;
   public xIsNext!: boolean;
   public winner!: string;
   public difficulty = Difficulty.Medium;
@@ -98,11 +99,13 @@ export class BoardComponent implements OnInit {
   }
 
   private calculateWinner(): string {
+    this.gameEnded = this.squares.filter(x => !x.disabled).length === 0;
     for (const iterator of this.winnerLines) {
       const [a, b, c] = iterator;
       if (this.squares[a].value &&
         this.squares[a].value === this.squares[b].value &&
         this.squares[a].value === this.squares[c].value) {
+        this.gameEnded = true;
         this.disableSquares();
         return this.squares[a].value as Player;
       }
