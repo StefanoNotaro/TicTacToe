@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Player } from '../common/enums/player';
+import { Player } from '../common/enums/player.enum';
 import { ISquare } from '../common/interfaces/square.interface';
 
 @Component({

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ISquare } from '../common/interfaces/square.interface';
-import { Player } from '../common/enums/player';
+import { Player } from '../common/enums/player.enum';
+import { Difficulty } from '../common/enums/difficulty.enum';
 
 @Component({
   selector: 'app-board',
@@ -11,6 +12,17 @@ export class BoardComponent implements OnInit {
   public squares!: ISquare[];
   public xIsNext!: boolean;
   public winner!: string;
+  public difficulty = Difficulty.Medium;
+  private readonly winnerLines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
 
   public get getPlayer(): Player { return this.xIsNext ? Player.X : Player.O; }
 
@@ -21,14 +33,16 @@ export class BoardComponent implements OnInit {
   }
 
   public startNewGame(): void {
-    this.squares = new Array<ISquare>(9).fill({ disabled: false, value: undefined });
+    this.squares = new Array<ISquare>(9)
+      .fill({ disabled: false, index: 0 })
+      .map((_, index) => ({ disabled: false, index }));
     this.xIsNext = false;
     this.winner = '';
   }
 
   public makeMove(index: number): void {
     if (!this.squares[index].value) {
-      this.squares.splice(index, 1, { disabled: true, value: this.getPlayer });
+      this.squares.splice(index, 1, { disabled: true, value: this.getPlayer, index });
       this.xIsNext = !this.xIsNext;
     }
 
@@ -41,30 +55,50 @@ export class BoardComponent implements OnInit {
   }
 
   private makeAutomaticMove(): void {
-    const allEmptySqauresIndexes = new Array<number>();
-    for (let i = 0; i < this.squares.length; i++) {
-      const square = this.squares[i];
-      if (!square.value) {
-        allEmptySqauresIndexes.push(i);
-      }
+    this.makeMove(this.getNextMovementPosition());
+  }
+
+  private getNextMovementPosition(): number {
+    if (this.difficulty === Difficulty.Easy) {
+      return this.getRandomEmptySqaure();
     }
 
-    this.makeMove(allEmptySqauresIndexes[Math.floor(Math.random() * allEmptySqauresIndexes.length)]);
+    return this.getBloquingPosition();
+  }
+
+  private getBloquingPosition(): number {
+    const oponentPositions = this.squares.filter(x => x.value === (this.xIsNext ? Player.O : Player.X));
+    const oponentPositionsIndexes = oponentPositions.map(x => x.index);
+
+    const lineToBlock = this.winnerLines.find(x => {
+      const posibleMovement = x.filter(y => oponentPositionsIndexes.indexOf(y) !== -1);
+      if (posibleMovement?.length === 2 && x.some(y => !this.squares[y].value)) {
+        return true;
+      }
+
+      return false;
+    });
+
+    const blockingPosition = lineToBlock?.find(x => !this.squares[x]?.value) ?? -1;
+
+    if (blockingPosition !== -1) {
+      return blockingPosition;
+    }
+
+    return this.getRandomEmptySqaure();
+  }
+
+  private getRandomEmptySqaure(): number {
+    const emptySquares = this.getEmptyPositions();
+    return emptySquares[Math.floor(Math.random() * emptySquares.length)].index;
+  }
+
+  private getEmptyPositions(): ISquare[] {
+    return this.squares.filter(x => !x.value);
   }
 
   private calculateWinner(): string {
-    const winnerLines = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6],
-    ];
-
-    for (const iterator of winnerLines) {
+    for (const iterator of this.winnerLines) {
       const [a, b, c] = iterator;
       if (this.squares[a].value &&
         this.squares[a].value === this.squares[b].value &&
