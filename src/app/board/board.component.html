@@ -1,7 +1,7 @@
 <h1 *ngIf="!gameEnded || winner">Current player: {{ getPlayer }}</h1>
 <h1 *ngIf="gameEnded && !winner">Game ended in draw!</h1>
 
-<button type="button" aria-label="Start new game" (click)="startNewGame()">
+<button type="button" aria-label="Start new game" class="btn btn-primary" (click)="startNewGame()">
   Start new game
 </button>
 
@@ -11,3 +11,14 @@
   <app-square *ngFor="let value of squares; let i = index;" [value]="value" (click)="makeMove(i)">
   </app-square>
 </main>
+
+<div class="btn-group" role="group" aria-label="Difficulties group">
+  <button type="button" *ngFor="let difficulty of difficulties" class="btn" (click)="onDifficultyClick(difficulty)" [ngClass]="{
+    active: difficulty.isSelected,
+    'btn-outline-primary': !difficulty.isSelected || !getGameStarted,
+    'btn-primary': difficulty.isSelected && getGameStarted
+  }"
+          [disabled]="getGameStarted">
+    {{ difficulty.difficulty }}
+  </button>
+</div>

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ISquare } from '../common/interfaces/square.interface';
-import { Player } from '../common/enums/player.enum';
-import { Difficulty } from '../common/enums/difficulty.enum';
+import {Component, OnInit} from '@angular/core';
+import {ISquare} from '../common/interfaces/square.interface';
+import {Player} from '../common/enums/player.enum';
+import {Difficulty} from '../common/enums/difficulty.enum';
+import {IDifficulty} from '../common/interfaces/difficulty.interface';
 
 @Component({
   selector: 'app-board',
@@ -13,7 +14,7 @@ export class BoardComponent implements OnInit {
   public gameEnded = false;
   public xIsNext!: boolean;
   public winner!: string;
-  public difficulty = Difficulty.Medium;
+  public difficulties: IDifficulty[] = [];
   private readonly winnerLines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -25,25 +26,35 @@ export class BoardComponent implements OnInit {
     [2, 4, 6],
   ];
 
+  public get getSelectedDifficulty(): Difficulty { return this.difficulties.find(x => x.isSelected)?.difficulty ?? Difficulty.Easy; }
   public get getPlayer(): Player { return this.xIsNext ? Player.X : Player.O; }
+  public get getGameStarted(): boolean { return this.squares.some(x => x.value !== undefined); }
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
     this.startNewGame();
+    type lala = keyof Difficulty;
+    this.difficulties = Object.keys(Difficulty).map(key => {
+      return {
+        difficulty: key as Difficulty,
+        isSelected: key === Difficulty.Easy
+      };
+    });
   }
 
   public startNewGame(): void {
     this.squares = new Array<ISquare>(9)
-      .fill({ disabled: false, index: 0 })
-      .map((_, index) => ({ disabled: false, index }));
+      .fill({disabled: false, index: 0})
+      .map((_, index) => ({disabled: false, index}));
     this.xIsNext = false;
     this.winner = '';
   }
 
   public makeMove(index: number): void {
     if (!this.squares[index].value) {
-      this.squares.splice(index, 1, { disabled: true, value: this.getPlayer, index });
+      this.squares.splice(index, 1, {disabled: true, value: this.getPlayer, index});
       this.xIsNext = !this.xIsNext;
     }
 
@@ -59,12 +70,20 @@ export class BoardComponent implements OnInit {
     this.makeMove(this.getNextMovementPosition());
   }
 
-  private getNextMovementPosition(): number {
-    if (this.difficulty === Difficulty.Easy) {
-      return this.getRandomEmptySquare();
+  private shouldUseRandomMove(): boolean {
+    switch (this.getSelectedDifficulty) {
+      case Difficulty.Medium:
+        return Math.random() > 0.5;
+      case Difficulty.Hard:
+        return false;
+      case Difficulty.Easy:
+      default:
+        return true;
     }
+  }
 
-    return this.getBlockingPosition();
+  private getNextMovementPosition(): number {
+    return  this.shouldUseRandomMove() ? this.getRandomEmptySquare() : this.getBlockingPosition();
   }
 
   private getBlockingPosition(): number {
@@ -112,5 +131,11 @@ export class BoardComponent implements OnInit {
 
   private disableSquares(): void {
     this.squares.forEach(x => x.disabled = true);
+  }
+
+  public onDifficultyClick(difficulty: IDifficulty): void {
+    if (!this.getGameStarted) {
+      this.difficulties.forEach(x => x.isSelected = x.difficulty === difficulty.difficulty);
+    }
   }
 }
