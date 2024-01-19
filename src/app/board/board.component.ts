@@ -35,7 +35,6 @@ export class BoardComponent implements OnInit {
 
   ngOnInit(): void {
     this.startNewGame();
-    type lala = keyof Difficulty;
     this.difficulties = Object.keys(Difficulty).map(key => {
       return {
         difficulty: key as Difficulty,
@@ -70,6 +69,10 @@ export class BoardComponent implements OnInit {
     this.makeMove(this.getNextMovementPosition());
   }
 
+  private getNextMovementPosition(): number {
+    return  this.shouldUseRandomMove() ? this.getRandomEmptySquare() : this.getBlockingPosition();
+  }
+
   private shouldUseRandomMove(): boolean {
     switch (this.getSelectedDifficulty) {
       case Difficulty.Medium:
@@ -82,13 +85,27 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  private getNextMovementPosition(): number {
-    return  this.shouldUseRandomMove() ? this.getRandomEmptySquare() : this.getBlockingPosition();
-  }
-
   private getBlockingPosition(): number {
-    const opponentPositions = this.squares.filter(x => x.value === (this.xIsNext ? Player.O : Player.X));
-    const opponentPositionsIndexes = opponentPositions.map(x => x.index);
+    const mySquareCondition: (square: ISquare, player: Player) => boolean = (x, player) => {
+      return x.value === player;
+    };
+
+    const myPositions = this.squares
+      .filter(x => mySquareCondition(x, this.xIsNext ? Player.X : Player.O))
+      .map(x => x.index);
+    const myWinningLines = this.winnerLines.find(x => {
+      const possibleMovement = x.filter(y => myPositions.indexOf(y) !== -1);
+      return possibleMovement?.length === 2 && x.some(y => !this.squares[y].value);
+    });
+
+    const winningingPosition = myWinningLines?.find(x => !this.squares[x]?.value) ?? -1;
+    if (winningingPosition !== -1) {
+      return winningingPosition;
+    }
+
+    const opponentPositionsIndexes = this.squares
+      .filter(x => mySquareCondition(x, this.xIsNext ? Player.O : Player.X))
+      .map(x => x.index);
 
     const lineToBlock = this.winnerLines.find(x => {
       const possibleMovement = x.filter(y => opponentPositionsIndexes.indexOf(y) !== -1);
