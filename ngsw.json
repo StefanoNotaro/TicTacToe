@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1649950472324,
+  "timestamp": 1705658927400,
   "index": "/TicTacToe/index.html",
   "assetGroups": [
     {
@@ -13,11 +13,11 @@
       "urls": [
         "/TicTacToe/favicon.ico",
         "/TicTacToe/index.html",
-        "/TicTacToe/main.b15ee19e387a4a36e31f.js",
+        "/TicTacToe/main.5a1c2d4b3bc41e7c.js",
         "/TicTacToe/manifest.webmanifest",
-        "/TicTacToe/polyfills.00096ed7d93ed26ee6df.js",
-        "/TicTacToe/runtime.7b63b9fd40098a2e8207.js",
-        "/TicTacToe/styles.09e2c710755c8867a460.css"
+        "/TicTacToe/polyfills.473e3f32ceb8b082.js",
+        "/TicTacToe/runtime.0ffcd9f2214a6c9a.js",
+        "/TicTacToe/styles.ef46db3751d8e999.css"
       ],
       "patterns": []
     },
@@ -52,12 +52,12 @@
     "/TicTacToe/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
     "/TicTacToe/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
     "/TicTacToe/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/TicTacToe/index.html": "a42741f795779de2af632630aea9a49eb9babdc0",
-    "/TicTacToe/main.b15ee19e387a4a36e31f.js": "b762405e278c80d0f1ecfca82570a341d48f6fd8",
+    "/TicTacToe/index.html": "054eac8c8ec337facef374f0da32e092339167b2",
+    "/TicTacToe/main.5a1c2d4b3bc41e7c.js": "e58212a4c9207a22b1a3566bd2ae00667bffef6d",
     "/TicTacToe/manifest.webmanifest": "3dc0bbcd860b44bae22c637a52e6850ff35400ac",
-    "/TicTacToe/polyfills.00096ed7d93ed26ee6df.js": "cfe7b0b53e96bff9ba384b4d497c08475a617d62",
-    "/TicTacToe/runtime.7b63b9fd40098a2e8207.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
-    "/TicTacToe/styles.09e2c710755c8867a460.css": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+    "/TicTacToe/polyfills.473e3f32ceb8b082.js": "1dd0a50fcd88298475f454b162121996d3ec51f7",
+    "/TicTacToe/runtime.0ffcd9f2214a6c9a.js": "c6898974f80b732ac7ab67d3cc644ad6dcf34b00",
+    "/TicTacToe/styles.ef46db3751d8e999.css": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
   },
   "navigationUrls": [
     {
