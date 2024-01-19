@@ -1,7 +1,7 @@
 {
   "configVersion": 1,
-  "timestamp": 1705658927400,
-  "index": "/TicTacToe/index.html",
+  "timestamp": 1705659249924,
+  "index": "/index.html",
   "assetGroups": [
     {
       "name": "app",
@@ -11,13 +11,13 @@
         "ignoreVary": true
       },
       "urls": [
-        "/TicTacToe/favicon.ico",
-        "/TicTacToe/index.html",
-        "/TicTacToe/main.5a1c2d4b3bc41e7c.js",
-        "/TicTacToe/manifest.webmanifest",
-        "/TicTacToe/polyfills.473e3f32ceb8b082.js",
-        "/TicTacToe/runtime.0ffcd9f2214a6c9a.js",
-        "/TicTacToe/styles.ef46db3751d8e999.css"
+        "/favicon.ico",
+        "/index.html",
+        "/main.73ffb3bc4449c3d3.js",
+        "/manifest.webmanifest",
+        "/polyfills.5583952dc983cf6a.js",
+        "/runtime.0ffcd9f2214a6c9a.js",
+        "/styles.ef46db3751d8e999.css"
       ],
       "patterns": []
     },
@@ -29,35 +29,35 @@
         "ignoreVary": true
       },
       "urls": [
-        "/TicTacToe/assets/icons/icon-128x128.png",
-        "/TicTacToe/assets/icons/icon-144x144.png",
-        "/TicTacToe/assets/icons/icon-152x152.png",
-        "/TicTacToe/assets/icons/icon-192x192.png",
-        "/TicTacToe/assets/icons/icon-384x384.png",
-        "/TicTacToe/assets/icons/icon-512x512.png",
-        "/TicTacToe/assets/icons/icon-72x72.png",
-        "/TicTacToe/assets/icons/icon-96x96.png"
+        "/assets/icons/icon-128x128.png",
+        "/assets/icons/icon-144x144.png",
+        "/assets/icons/icon-152x152.png",
+        "/assets/icons/icon-192x192.png",
+        "/assets/icons/icon-384x384.png",
+        "/assets/icons/icon-512x512.png",
+        "/assets/icons/icon-72x72.png",
+        "/assets/icons/icon-96x96.png"
       ],
       "patterns": []
     }
   ],
   "dataGroups": [],
   "hashTable": {
-    "/TicTacToe/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
-    "/TicTacToe/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
-    "/TicTacToe/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
-    "/TicTacToe/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
-    "/TicTacToe/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
-    "/TicTacToe/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
-    "/TicTacToe/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
-    "/TicTacToe/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
-    "/TicTacToe/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/TicTacToe/index.html": "054eac8c8ec337facef374f0da32e092339167b2",
-    "/TicTacToe/main.5a1c2d4b3bc41e7c.js": "e58212a4c9207a22b1a3566bd2ae00667bffef6d",
-    "/TicTacToe/manifest.webmanifest": "3dc0bbcd860b44bae22c637a52e6850ff35400ac",
-    "/TicTacToe/polyfills.473e3f32ceb8b082.js": "1dd0a50fcd88298475f454b162121996d3ec51f7",
-    "/TicTacToe/runtime.0ffcd9f2214a6c9a.js": "c6898974f80b732ac7ab67d3cc644ad6dcf34b00",
-    "/TicTacToe/styles.ef46db3751d8e999.css": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+    "/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
+    "/index.html": "63bbb8f28b16017c9b2eb1c03854c4817373700e",
+    "/main.73ffb3bc4449c3d3.js": "91eb80d7202b188026d4d451067d8ca7726480de",
+    "/manifest.webmanifest": "3dc0bbcd860b44bae22c637a52e6850ff35400ac",
+    "/polyfills.5583952dc983cf6a.js": "19609772e5e1a7ec11652aaf3c7455179cc211c1",
+    "/runtime.0ffcd9f2214a6c9a.js": "c6898974f80b732ac7ab67d3cc644ad6dcf34b00",
+    "/styles.ef46db3751d8e999.css": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
   },
   "navigationUrls": [
     {
