@@ -137,5 +137,7 @@
       }
     }
   },
-  "defaultProject": "TicTacToe"
+  "cli": {
+    "analytics": false
+  }
 }
