@@ -61,23 +61,19 @@ export class BoardComponent implements OnInit {
 
   private getNextMovementPosition(): number {
     if (this.difficulty === Difficulty.Easy) {
-      return this.getRandomEmptySqaure();
+      return this.getRandomEmptySquare();
     }
 
-    return this.getBloquingPosition();
+    return this.getBlockingPosition();
   }
 
-  private getBloquingPosition(): number {
-    const oponentPositions = this.squares.filter(x => x.value === (this.xIsNext ? Player.O : Player.X));
-    const oponentPositionsIndexes = oponentPositions.map(x => x.index);
+  private getBlockingPosition(): number {
+    const opponentPositions = this.squares.filter(x => x.value === (this.xIsNext ? Player.O : Player.X));
+    const opponentPositionsIndexes = opponentPositions.map(x => x.index);
 
     const lineToBlock = this.winnerLines.find(x => {
-      const posibleMovement = x.filter(y => oponentPositionsIndexes.indexOf(y) !== -1);
-      if (posibleMovement?.length === 2 && x.some(y => !this.squares[y].value)) {
-        return true;
-      }
-
-      return false;
+      const possibleMovement = x.filter(y => opponentPositionsIndexes.indexOf(y) !== -1);
+      return possibleMovement?.length === 2 && x.some(y => !this.squares[y].value);
     });
 
     const blockingPosition = lineToBlock?.find(x => !this.squares[x]?.value) ?? -1;
@@ -86,10 +82,10 @@ export class BoardComponent implements OnInit {
       return blockingPosition;
     }
 
-    return this.getRandomEmptySqaure();
+    return this.getRandomEmptySquare();
   }
 
-  private getRandomEmptySqaure(): number {
+  private getRandomEmptySquare(): number {
     const emptySquares = this.getEmptyPositions();
     return emptySquares[Math.floor(Math.random() * emptySquares.length)].index;
   }

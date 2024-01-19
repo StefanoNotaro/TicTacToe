@@ -14,8 +14,8 @@ h2 {
 main {
   display: grid;
   grid-template-columns: var(--square-size) var(--square-size) var(--square-size);
-  grid-gap: 0px;
-  box-shadow: 0px 0px 5px 0px white;
+  grid-gap: 0;
+  box-shadow: 0 0 5px 0 white;
 }
 
 app-square {
