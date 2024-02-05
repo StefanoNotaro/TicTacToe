@@ -76,7 +76,7 @@ export class BoardComponent implements OnInit {
   private shouldUseRandomMove(): boolean {
     switch (this.getSelectedDifficulty) {
       case Difficulty.Medium:
-        return Math.random() > 0.5;
+        return Math.random() > 0.25;
       case Difficulty.Hard:
         return false;
       case Difficulty.Easy:
